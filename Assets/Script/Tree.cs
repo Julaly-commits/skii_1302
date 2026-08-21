@@ -3,11 +3,24 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
     private MeshRenderer rd;
+    private Color normalColor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rd = GetComponent<MeshRenderer>();
+        // The visible mesh is the Fir_Tree child, not this object, so search
+        // downwards instead of only on the root.
+        rd = GetComponentInChildren<MeshRenderer>();
+
+        if (rd == null)
+        {
+            Debug.LogWarning("[Tree] No MeshRenderer found - the hit colour is disabled.", this);
+            return;
+        }
+
+        // Remember the colour the material was authored with. Reading it from
+        // sharedMaterial avoids cloning a material for every tree up front.
+        normalColor = rd.sharedMaterial != null ? rd.sharedMaterial.color : Color.white;
     }
 
     // Update is called once per frame
@@ -17,7 +30,8 @@ public class Tree : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        rd.material.color = Color.red;
+        if (rd != null)
+            rd.material.color = Color.red;
 
        Player player = collision.gameObject.GetComponent<Player>();
 
@@ -38,6 +52,9 @@ public class Tree : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        rd.material.color = new Color32(212, 109, 29, 255);
+        // Back to whatever the material started as. The old hardcoded orange was
+        // the placeholder capsule's colour and would have stained the fir tree.
+        if (rd != null)
+            rd.material.color = normalColor;
     }
 }
