@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 618081918153862370}
+  - {fileID: 7316430132293906669}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6246121244314262611
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999bff161aaa8a74ea31028d581ec33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tree
---- !u!1001 &618081918153400310
+--- !u!1001 &7316430132293436409
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -138,8 +138,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
---- !u!4 &618081918153862370 stripped
+--- !u!4 &7316430132293906669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 471828, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
-  m_PrefabInstance: {fileID: 618081918153400310}
+  m_PrefabInstance: {fileID: 7316430132293436409}
   m_PrefabAsset: {fileID: 0}
