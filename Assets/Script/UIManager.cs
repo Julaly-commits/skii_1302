@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -9,9 +10,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject restartButton;
 
-    [SerializeField]
-    private Player player;
-
     public static UIManager Instance;
 
     void Awake()
@@ -19,31 +17,23 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ShowNotiText(string s)
     {
         notiText.text = s;
     }
 
+    /// <summary>
+    /// Loads the run again from scratch. Moving the player by hand left every
+    /// flag and tree that had already been collected or hit gone for good, so
+    /// reload the scene and let the whole course rebuild itself.
+    /// </summary>
     public void RestartGame()
     {
-        player.transform.position = new Vector3(0f, 88f, -86f);
-        player.HP = 100;
-        ShowNotiText("Restart kub auan");
+        // Time has to run again before the reload, or the fresh scene starts
+        // frozen and nothing moves.
         Time.timeScale = 1f;
-        ShowHideRestartButton(false);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ShowHideRestartButton(bool flag)
